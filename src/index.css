@@ -3,8 +3,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --card-size: min(calc((100vw - 200px) / 2), calc((100vh - 320px) / 2), 240px);
-  --hand-card-size: min(22vw, 20vh, 140px);
+  --card-size: min(calc((100vw - 200px) / 2), calc((100vh - 320px) / 2), 360px);
+  --hand-card-size: min(33vw, 30vh, 210px);
   --green-1:  #1a3a2a;
   --green-2:  #2d5a3d;
   --green-3:  #3d7a52;
@@ -26,6 +26,7 @@
   --card-shadow-hover: 0 8px 28px rgba(26,58,42,0.22), 0 2px 8px rgba(26,58,42,0.12);
   --selected-glow: 0 0 0 3px var(--gold), 0 8px 24px rgba(200,168,75,0.35);
   --radius: 12px;
+  --edge-padding: 12px;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
 }

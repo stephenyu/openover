@@ -103,7 +103,7 @@
 }
 
 .edge-top {
-  top: 7px;
+  top: var(--edge-padding);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -114,7 +114,7 @@
 }
 
 .edge-bottom {
-  bottom: 7px;
+  bottom: var(--edge-padding);
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -125,18 +125,18 @@
 }
 
 .edge-right {
-  right: 5px;
+  right: var(--edge-padding);
   top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  transform-origin: center;
+  writing-mode: vertical-lr;
+  transform: translateY(-50%);
   color: var(--ink-2);
 }
 
 .edge-left {
-  left: 5px;
+  left: var(--edge-padding);
   top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: center;
+  writing-mode: vertical-lr;
+  transform: translateY(-50%) rotate(180deg);
   color: var(--ink-2);
 }
 
@@ -146,7 +146,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 22px;
+  font-size: 33px;
   color: var(--green-5);
   opacity: 0.35;
   pointer-events: none;
@@ -158,13 +158,13 @@
   position: absolute;
   bottom: 4px;
   right: 4px;
-  width: 22px;
-  height: 22px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
   border: 1px solid var(--card-border);
   background: rgba(255,255,255,0.85);
   color: var(--green-3);
-  font-size: 13px;
+  font-size: 19px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +235,7 @@
 }
 
 .grid-slot .card-face .edge-word {
-  font-size: clamp(10px, 1.1vw, 14px) !important;
+  font-size: clamp(15px, 1.65vw, 21px) !important;
 }
 
 .hand-cards .card-face {
@@ -244,7 +244,7 @@
 }
 
 .hand-cards .card-face .edge-word {
-  font-size: clamp(9px, 0.9vw, 12px) !important;
+  font-size: clamp(14px, 1.35vw, 18px) !important;
 }
 
 .grid-slot.empty:hover {
@@ -644,8 +644,8 @@
 
 @media (max-width: 520px) {
   :root {
-    --card-size: min(calc((100vw - 140px) / 2), calc((100vh - 300px) / 2), 160px);
-    --hand-card-size: min(24vw, 18vh, 110px);
+    --card-size: min(calc((100vw - 100px) / 2), calc((100vh - 200px) / 2), 240px);
+    --hand-card-size: min(36vw, 27vh, 165px);
   }
   .clue-input { min-width: 140px; font-size: 12px; }
   .clue-badge { max-width: 200px; }
