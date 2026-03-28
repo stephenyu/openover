@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --card-size: min(calc((100vw - 200px) / 2), calc((100vh - 320px) / 2), 240px);
+  --hand-card-size: min(22vw, 20vh, 140px);
+  --green-1:  #1a3a2a;
+  --green-2:  #2d5a3d;
+  --green-3:  #3d7a52;
+  --green-4:  #5a9e6e;
+  --green-5:  #8dc99e;
+  --green-6:  #c5e8ce;
+  --green-7:  #e8f5ec;
+  --cream:    #f8f4ee;
+  --cream-2:  #ede8df;
+  --gold:     #c8a84b;
+  --gold-lt:  #e8d18a;
+  --ink:      #1a2e1e;
+  --ink-2:    #3a4e3e;
+  --muted:    #7a9880;
+  --red:      #c84b4b;
+  --card-bg:  #fafff8;
+  --card-border: #b8d8c0;
+  --card-shadow: 0 4px 16px rgba(26,58,42,0.15), 0 1px 4px rgba(26,58,42,0.08);
+  --card-shadow-hover: 0 8px 28px rgba(26,58,42,0.22), 0 2px 8px rgba(26,58,42,0.12);
+  --selected-glow: 0 0 0 3px var(--gold), 0 8px 24px rgba(200,168,75,0.35);
+  --radius: 12px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--green-1);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(61,122,82,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(45,90,61,0.6) 0%, transparent 50%);
+  min-height: 100vh;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
