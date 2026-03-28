@@ -24,20 +24,18 @@ function makeCard(id, words) {
 
 // ─── Card visual component ────────────────────────────────────────────────────
 
-function CardFace({ card, size = 120, selected, onClick, onRotate, showRotate = true }) {
+function CardFace({ card, selected, onClick, onRotate, showRotate = true }) {
   const [top, right, bottom, left] = getEdges(card)
-  const fontSize = size < 100 ? 9 : size < 130 ? 10 : 11
 
   return (
     <div
       className={`card-face${selected ? ' selected' : ''}`}
-      style={{ width: size, height: size }}
       onClick={onClick}
     >
-      <span className="edge-word edge-top" style={{ fontSize }}>{top}</span>
-      <span className="edge-word edge-right" style={{ fontSize }}>{right}</span>
-      <span className="edge-word edge-bottom" style={{ fontSize }}>{bottom}</span>
-      <span className="edge-word edge-left" style={{ fontSize }}>{left}</span>
+      <span className="edge-word edge-top">{top}</span>
+      <span className="edge-word edge-right">{right}</span>
+      <span className="edge-word edge-bottom">{bottom}</span>
+      <span className="edge-word edge-left">{left}</span>
       <span className="card-center">♣</span>
       {showRotate && (
         <button
@@ -62,7 +60,6 @@ function GridSlot({ card, slotKey, selected, onClickSlot, onRotate }) {
         ? <CardFace
             key={card.id}
             card={card}
-            size={130}
             selected={selected}
             showRotate={true}
             onRotate={() => onRotate(slotKey)}
@@ -318,7 +315,7 @@ export default function App() {
           <div className="hand-label">Hand ({p1hand.length} card{p1hand.length !== 1 ? 's' : ''} remaining)</div>
           <div className="hand-cards">
             {p1hand.map(id => (
-              <CardFace key={id} card={getCard(id)} size={112}
+              <CardFace key={id} card={getCard(id)} 
                 selected={selectedCard?.id === id}
                 onClick={() => p1ClickHandCard(id)}
                 onRotate={() => rotateCard(id)} />
@@ -401,7 +398,7 @@ export default function App() {
           <div className="hand-label">Available cards ({p2hand.length} remaining)</div>
           <div className="hand-cards">
             {p2hand.map(id => (
-              <CardFace key={id} card={getCard(id)} size={112}
+              <CardFace key={id} card={getCard(id)} 
                 selected={selectedCard?.id === id}
                 onClick={() => p2ClickHandCard(id)}
                 onRotate={() => rotateCard(id)} />
