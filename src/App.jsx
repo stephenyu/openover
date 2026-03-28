@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import wordData from '../words.txt?raw'
+import { getEdges, encodeState, decodeState } from './gameState.js'
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -15,13 +16,6 @@ function shuffle(arr) {
 
 function pick(arr, n) {
   return shuffle(arr).slice(0, n)
-}
-
-// Returns [top, right, bottom, left] after applying rotation (0–3 clockwise)
-function getEdges(card) {
-  const r = ((card.rotation % 4) + 4) % 4
-  const w = card.words // [top, right, bottom, left]
-  return [0, 1, 2, 3].map(i => w[(i - r + 4) % 4])
 }
 
 function makeCard(id, words) {
@@ -122,6 +116,19 @@ export default function App() {
   useEffect(() => {
     const w = wordData.split('\n').map(s => s.trim()).filter(Boolean)
     setWords(w)
+    const stateParam = new URLSearchParams(window.location.search).get('state')
+    if (stateParam) {
+      const decoded = decodeState(stateParam, w)
+      if (decoded) {
+        setCards(decoded.cards)
+        setP1snapshot(decoded.p1snapshot)
+        setClues(decoded.clues)
+        setP2hand(shuffle(decoded.cards.map(c => c.id)))
+        setP2grid({ TL: null, TR: null, BL: null, BR: null })
+        setPhase('p2guess')
+        return
+      }
+    }
     startGame(w)
   }, [])
 
@@ -173,17 +180,9 @@ export default function App() {
   const allCluesFilled = Object.values(clues).every(c => c.trim().length > 0)
 
   const handleSaveHandover = () => {
-    const snap = {}
-    SLOTS.forEach(s => {
-      snap[s] = getEdges(getCard(p1grid[s]))
-    })
-    setP1snapshot(snap)
-    const resetCards = cards.map(c => ({ ...c, rotation: Math.floor(Math.random() * 4) }))
-    setCards(resetCards)
-    setP2hand(shuffle(resetCards.map(c => c.id)))
-    setP2grid({ TL: null, TR: null, BL: null, BR: null })
-    setSelectedCard(null)
-    setPhase('handover')
+    const encoded = encodeState(words, cards, p1grid, clues)
+    const url = window.location.origin + window.location.pathname + '?state=' + encoded
+    window.location.href = url
   }
 
   // ── Phase 2 ───────────────────────────────────────────────────────────────
@@ -335,22 +334,6 @@ export default function App() {
             {!allCluesFilled && <span className="action-hint">Fill all 4 clues first</span>}
           </div>
         )}
-      </div>
-    )
-  }
-
-  // ── HANDOVER ──────────────────────────────────────────────────────────────
-  if (phase === 'handover') {
-    return (
-      <div className="screen handover-screen">
-        <div className="handover-card">
-          <div className="handover-clover">♣</div>
-          <h2>Pass to Player 2</h2>
-          <p>Player 1 has set the puzzle. No peeking!</p>
-          <button className="action-btn" onClick={() => setPhase('p2guess')}>
-            I'm Ready →
-          </button>
-        </div>
       </div>
     )
   }
