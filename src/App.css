@@ -75,6 +75,15 @@
   flex-shrink: 0;
 }
 
+.grid-slot .card-face {
+  animation: card-land 0.2s ease-out;
+}
+
+@keyframes card-land {
+  from { transform: scale(0.88); opacity: 0.6; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
 .card-face:hover {
   transform: translateY(-2px);
   box-shadow: var(--card-shadow-hover);

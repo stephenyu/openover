@@ -60,6 +60,7 @@ function GridSlot({ card, slotKey, selected, onClickSlot, onRotate }) {
     >
       {card
         ? <CardFace
+            key={card.id}
             card={card}
             size={130}
             selected={selected}
