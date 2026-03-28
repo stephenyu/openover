@@ -270,8 +270,8 @@
 }
 
 .clue-side {
-  width: clamp(60px, 8vw, 100px);
-  min-width: clamp(60px, 8vw, 100px);
+  width: clamp(110px, 14vw, 160px);
+  min-width: clamp(110px, 14vw, 160px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -289,7 +289,7 @@
   border-radius: 8px;
   color: var(--green-7);
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: var(--clue-font-size);
   padding: 7px 12px;
   outline: none;
   text-align: center;
@@ -306,13 +306,11 @@
 }
 
 .clue-input-v {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
   min-width: unset;
-  width: 36px;
-  min-height: calc(var(--card-size) * 2 + 6px);
-  padding: 12px 8px;
-  font-size: 12px;
+  width: clamp(100px, 12vw, 140px);
+  padding: 7px 10px;
+  font-size: var(--clue-font-size);
+  text-align: center;
 }
 
 .clue-hint {
@@ -336,14 +334,12 @@
 
 .clue-badge.vertical {
   flex-direction: column;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  padding: 14px 6px;
-  max-width: unset;
-  width: 50px;
-  min-height: calc(var(--card-size) * 2 + 6px);
-  gap: 6px;
+  padding: 8px 12px;
+  max-width: clamp(100px, 13vw, 150px);
+  width: clamp(100px, 13vw, 150px);
+  gap: 4px;
   justify-content: center;
+  text-align: center;
 }
 
 .cb-dir {
@@ -356,7 +352,7 @@
 
 .cb-text {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: var(--clue-font-size);
   font-style: italic;
   color: var(--gold-lt);
 }
@@ -647,6 +643,9 @@
     --card-size: min(calc((100vw - 100px) / 2), calc((100vh - 200px) / 2), 240px);
     --hand-card-size: min(36vw, 27vh, 165px);
   }
-  .clue-input { min-width: 140px; font-size: 12px; }
+  .clue-input { min-width: 120px; font-size: 12px; }
+  .clue-input-v { width: 80px; font-size: 11px; }
+  .clue-side { width: 90px; min-width: 90px; }
   .clue-badge { max-width: 200px; }
+  .clue-badge.vertical { max-width: 85px; width: 85px; }
 }

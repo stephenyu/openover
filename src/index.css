@@ -29,6 +29,7 @@
   --edge-padding: 12px;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
+  --clue-font-size: 16px;
 }
 
 html, body { height: 100%; }
