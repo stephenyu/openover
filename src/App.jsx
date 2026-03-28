@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
+import wordData from '../words.txt?raw'
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 
@@ -119,22 +120,9 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    fetch('/dict.txt')
-      .then(r => r.text())
-      .then(text => {
-        const w = text.split('\n').map(s => s.trim()).filter(Boolean)
-        setWords(w)
-        startGame(w)
-      })
-      .catch(() => {
-        const fallback = ['oak','river','stone','frost','petal','ember','tide','moss','cedar','vale',
-          'dusk','reed','cliff','dawn','birch','gale','sage','lava','onyx','kelp','fern','crest',
-          'echo','silk','raven','snow','thorn','lotus','cobalt','quartz','haze','pine','amber',
-          'coral','plum','slate','mist','grove','dune','wave','loom','vine','prism','spark',
-          'shell','velvet','wren','thistle','vapor','teal']
-        setWords(fallback)
-        startGame(fallback)
-      })
+    const w = wordData.split('\n').map(s => s.trim()).filter(Boolean)
+    setWords(w)
+    startGame(w)
   }, [])
 
   const rotateCard = (cardId) => {
